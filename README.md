@@ -16,4 +16,8 @@ Conversion into numpy arrays enhances efficiency, particularly with binary varia
 
 
 TL;dr- THIS is a toy chart of size and complexity. 
+
+
+
+
 ![Figure_1](https://github.com/le-nicolas/DerivaNet/assets/112614851/b8d3b959-42b3-43b5-9ec6-b7fd60176936)
