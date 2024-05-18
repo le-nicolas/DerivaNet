@@ -112,7 +112,7 @@ fig = plt.figure()
 plt.contourf(xx, yy, Z, cmap=plt.cm.Spectral, alpha=0.8)
 
 #plots the data points on top of the decision boundary.and set the limits of the x and y axes to match the range of the data.
-plt.scatter(X_normalized[:, 0], X_normalized[:, 1], color=colors)
+plt.scatter(X_normalized[:, 0], X_normalized[:, 1], color=colors) # to make it visually appealing you can just add and replace color=colors by c=color_values, cmap=plt.cm.Spectral
 plt.xlim(xx.min(), xx.max())
 plt.ylim(yy.min(), yy.max())
 plt.title('Decision Boundary')
