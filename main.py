@@ -83,18 +83,35 @@ for epoch in range(epochs):
 
 # Visualize decision boundary
 h = 0.25
+
+#minimum and maximum values for the x and y axes of the plot
 x_min, x_max = X_normalized[:, 0].min() - 1, X_normalized[:, 0].max() + 1
 y_min, y_max = X_normalized[:, 1].min() - 1, X_normalized[:, 1].max() + 1
+
+#creates a grid of points, which will be used to evaluate the model and draw the decision boundary.
 xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
                      np.arange(y_min, y_max, h))
+
+#reshapes the grid of points into a 2D array that can be fed into the model.
 Xmesh = np.c_[xx.ravel(), yy.ravel()]
+
+#This converts each row in Xmesh into a list of Value objects, which is the input format expected by the model.
 inputs = [list(map(Value, xrow)) for xrow in Xmesh]
+
+#evaluates the model(MLP) on each input point
 scores = list(map(model, inputs))
+
+#This creates an array of boolean values indicating whether each score is greater than 0.
 Z = np.array([s.data > 0 for s in scores])
+
+#this reshapes Z to have the same shape as xx and yy, so it can be used with plt.contourf to draw the decision boundary.
 Z = Z.reshape(xx.shape)
 
+#draws the decision boundary by filling the areas where Z is True with one color and the areas where Z is False with another color.
 fig = plt.figure()
 plt.contourf(xx, yy, Z, cmap=plt.cm.Spectral, alpha=0.8)
+
+#plots the data points on top of the decision boundary.and set the limits of the x and y axes to match the range of the data.
 plt.scatter(X_normalized[:, 0], X_normalized[:, 1], color=colors)
 plt.xlim(xx.min(), xx.max())
 plt.ylim(yy.min(), yy.max())
