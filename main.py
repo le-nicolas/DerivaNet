@@ -27,6 +27,8 @@ X_normalized = scaler.fit_transform(X)
 
 # Create a color array and convert it to numerical labels
 colors = ['red' if size >= 60 or complexity >= 60 else 'blue' for size, complexity in zip(toy_size, toy_complexity)]
+color_map = {'red': 1, 'blue': -1}
+color_values = [color_map[color] for color in colors]
 
 # Generate labels based on a boundary condition
 labels = np.where(toy_size > 60, 'blue', 'red')
@@ -34,11 +36,10 @@ labels = np.where(toy_size > 60, 'blue', 'red')
 # Convert labels to numerical values
 y = [1 if color == 'red' else -1 for color in colors]
 y = [value * 2 - 1 for value in y]  # make y be -1 or 1
+y = np.array(y) # convert y to a numpy array for proper indexing
 
 # Initialize a model 
-model = MLP(2, [16, 16, 1])  # 2-layer neural network
-print(model)
-print("number of parameters", len(model.parameters()))
+model = MLP(2, [16, 16, 1])  # 2-layer Multi-Layer Perceptron
 
 # Loss function
 def loss(batch_size=None):
@@ -67,19 +68,18 @@ def loss(batch_size=None):
 total_loss, acc = loss()
 print(total_loss, acc)
 
-# Optimization
-for k in range(9):
-    total_loss, acc = loss()
-    
+#Train the model / optimization / gradient descent
+epochs = 100
+batch_size = 16
+for epoch in range(epochs):
+    total_loss, acc = loss(batch_size)
     model.zero_grad()
     total_loss.backward()
- 
-    learning_rate = 0.05 - 0.9 * k / 100
+    learning_rate = 0.01  # Reduce the learning rate
     for p in model.parameters():
         p.data -= learning_rate * p.grad
-    
-    if k % 1 == 0:
-        print(f"step {k} loss {total_loss.data}, accuracy {acc * 100}%")
+    if epoch % 10 == 0:
+        print(f"Epoch {epoch}: Loss = {total_loss.data:.4f}, Accuracy = {acc * 100:.2f}%")
 
 # Visualize decision boundary
 h = 0.25
