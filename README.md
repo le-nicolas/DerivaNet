@@ -20,4 +20,5 @@ TL;dr- THIS is a toy chart of size and complexity. applying things is kinda fun.
 
 
 
-![Figure_1](https://github.com/le-nicolas/DerivaNet/assets/112614851/b8d3b959-42b3-43b5-9ec6-b7fd60176936)
+![Yeah!](https://github.com/le-nicolas/DerivaNet/assets/112614851/9adade43-824b-4e62-94ff-b7635772883c)
+
