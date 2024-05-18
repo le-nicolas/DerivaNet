@@ -15,7 +15,7 @@ Conversion into numpy arrays enhances efficiency, particularly with binary varia
 
 
 
-TL;dr- THIS is a toy chart of size and complexity. applying things is kinda fun.
+TL;dr- THIS is a toy chart of size and complexity. applying things is kinda fun. You can input a random datasets and still do its thing :D
 
 
 
